@@ -1,0 +1,29 @@
+.app {
+    width: 100%;
+    height: 100vh;
+
+    & > * {
+        // border: 1px solid blue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header-section {
+        height: 10%;
+    }
+
+    .base-section {
+        height: 81%;
+    }
+
+    .side-selection-section {
+        height: 10%;
+        position: absolute;
+        display: none;
+    }
+
+    .footer-section {
+        height: 9%;
+    }
+}
