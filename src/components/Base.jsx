@@ -14,6 +14,7 @@ const Base = () => {
                     />
                 ))}
             </div>
+            
             <div className="red-lines">
                 {Array(9)
                     .fill(null)

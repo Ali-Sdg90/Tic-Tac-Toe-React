@@ -23,7 +23,10 @@ const GameCell = ({ col, row }) => {
     };
 
     return (
-        <div className="game-cell" onClick={clickHandler}>
+        <div
+            className={`game-cell cell-${3 * col + row}`}
+            onClick={clickHandler}
+        >
             <div>{showCellAs}</div>
         </div>
     );

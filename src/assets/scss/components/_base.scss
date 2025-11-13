@@ -8,11 +8,68 @@
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
         gap: 4px;
+        z-index: 2;
     }
 
     .red-lines {
-        // border: 1px solid red;
-        width: 600px;
         position: absolute;
+        width: 600px;
+        height: 600px;
+        // border: 1px solid rgb(255, 238, 0);
+        z-index: 1;
+
+        .red-line {
+            background-color: rgb(196, 0, 0);
+            border-radius: 5px;
+            position: absolute;
+            display: none;
+        }
+
+        .line-1,
+        .line-2,
+        .line-3 {
+            width: 600px;
+            height: 4px;
+        }
+        .line-4,
+        .line-5,
+        .line-6 {
+            width: 4px;
+            height: 600px;
+        }
+        .line-7 {
+            width: 800px;
+            height: 4px;
+        }
+        .line-8 {
+            width: 4px;
+            height: 800px;
+        }
+
+        .line-1 {
+            top: 16.66%;
+        }
+        .line-2 {
+            top: 50%;
+        }
+        .line-3 {
+            top: 83.33%;
+        }
+        .line-4 {
+            left: 16.66%;
+        }
+        .line-5 {
+            left: 50%;
+        }
+        .line-6 {
+            left: 83.33%;
+        }
+
+        .line-7,
+        .line-8 {
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
     }
 }

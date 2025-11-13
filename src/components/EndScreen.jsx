@@ -1,8 +1,8 @@
 import React from "react";
 
-const SideSelection = () => {
+const EndScreen = () => {
     return (
-        <div className="side-selection-section">
+        <div className="end-screen-section">
             <h2>Select Your Side</h2>
             <button>X</button>
             <button>O</button>
@@ -10,4 +10,4 @@ const SideSelection = () => {
     );
 };
 
-export default SideSelection;
+export default EndScreen;

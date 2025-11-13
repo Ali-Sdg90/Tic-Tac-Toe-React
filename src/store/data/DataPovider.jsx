@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DataContext } from "./DataContext";
 
 export const DataProvider = ({ children }) => {
@@ -9,29 +9,52 @@ export const DataProvider = ({ children }) => {
     ]);
     const [turn, setTurn] = useState("X");
 
-    const endGame = (winner, condition) => {
-        console.log("end", winner, condition);
-    };
+    const gameEnded = useRef(false);
 
     useEffect(() => {
+        const endGame = (winner, condition) => {
+            console.log("end", winner, condition);
+
+            gameEnded.current = true;
+
+            document.querySelector(`.red-lines`).style.zIndex = "3";
+
+            if (condition) {
+                document.querySelector(`.line-${condition + 1}`).style.display =
+                    "block";
+
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        if (data[j][i] === winner) {
+                            document.querySelector(
+                                `.cell-${3 * i + j}`
+                            ).style.backgroundColor = "#181818";
+                        }
+                    }
+                }
+            } else {
+                console.log("DRAW!");
+            }
+        };
+
         let checkFor = null;
-        for (let type = 0; type < 1; type++) {
+        let counter = 0;
+        for (let type = 0; type < 2; type++) {
             type === 0 ? (checkFor = "X") : (checkFor = "O");
-            let counter = 0;
+            counter = 0;
 
             for (let row = 0; row < 3; row++) {
                 counter = 0;
                 for (let col = 0; col < 3; col++) {
-                    if (data[row][col] === checkFor) {
-                        console.log("in row 1");
-                        ++counter === 3 && endGame(checkFor, `col-${row}`);
+                    if (data[col][row] === checkFor) {
+                        ++counter === 3 && endGame(checkFor, row);
                     }
                 }
 
                 counter = 0;
                 for (let col = 0; col < 3; col++) {
-                    if (data[col][row] === checkFor) {
-                        ++counter === 3 && endGame(checkFor, `row-${row}`);
+                    if (data[row][col] === checkFor) {
+                        ++counter === 3 && endGame(checkFor, 3 + row);
                     }
                 }
             }
@@ -39,16 +62,28 @@ export const DataProvider = ({ children }) => {
             counter = 0;
             for (let i = 0; i < 3; i++) {
                 if (data[i][i] === checkFor) {
-                    ++counter === 3 && endGame(checkFor, "ez-line");
+                    ++counter === 3 && endGame(checkFor, 6);
                 }
             }
 
             counter = 0;
             for (let i = 0; i < 3; i++) {
                 if (data[i][2 - i] === checkFor) {
-                    ++counter === 3 && endGame(checkFor, "hard-line");
+                    ++counter === 3 && endGame(checkFor, 7);
                 }
             }
+        }
+
+        counter = 0;
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (data[j][i] !== null) {
+                    counter++;
+                }
+            }
+        }
+        if (counter === 9 && !gameEnded.current) {
+            endGame("draw");
         }
     }, [data]);
 

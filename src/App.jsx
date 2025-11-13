@@ -1,14 +1,14 @@
 import React from "react";
-import SideSelection from "./components/SideSelection";
 import Header from "./components/Header";
 import Base from "./components/Base";
 import Footer from "./components/Footer";
+import EndScreen from "./components/EndScreen";
 
 const App = () => {
     return (
         <div className="app">
             <Header />
-            <SideSelection />
+            <EndScreen />
             <Base />
             <Footer />
         </div>

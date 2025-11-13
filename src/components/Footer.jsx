@@ -8,7 +8,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="footer-section"
         >
-            <div>&copy; 2025 Ali Sadeghi</div>
+            <div>&copy; Ali Sadeghi 2025</div>
         </a>
     );
 };
