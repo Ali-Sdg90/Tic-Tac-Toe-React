@@ -16,6 +16,7 @@ body {
     min-width: 780px;
     background-color: #222;
     color: white;
+    user-select: none;
 }
 
 ::-webkit-scrollbar {

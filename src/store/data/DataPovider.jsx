@@ -10,6 +10,7 @@ export const DataProvider = ({ children }) => {
     const [turn, setTurn] = useState("X");
 
     const gameEnded = useRef(false);
+    const [gameResult, setGameResult] = useState("");
 
     useEffect(() => {
         const endGame = (winner, condition) => {
@@ -20,6 +21,8 @@ export const DataProvider = ({ children }) => {
             document.querySelector(`.red-lines`).style.zIndex = "3";
 
             if (condition) {
+                setGameResult(`${winner} WON!`);
+
                 document.querySelector(`.line-${condition + 1}`).style.display =
                     "block";
 
@@ -33,7 +36,7 @@ export const DataProvider = ({ children }) => {
                     }
                 }
             } else {
-                console.log("DRAW!");
+                setGameResult("DRAW!");
             }
         };
 
@@ -88,7 +91,9 @@ export const DataProvider = ({ children }) => {
     }, [data]);
 
     return (
-        <DataContext.Provider value={{ data, setData, turn, setTurn }}>
+        <DataContext.Provider
+            value={{ data, setData, turn, setTurn, gameResult }}
+        >
             {children}
         </DataContext.Provider>
     );
